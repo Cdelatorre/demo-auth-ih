@@ -2,7 +2,7 @@ const createError = require('http-errors');
 const passport = require('passport');
 const { default: mongoose } = require('mongoose');
 const User = require('../models/User.model');
-
+const sendMail = require('../config/mailer.config');
 
 module.exports.signup = (req, res, next) => {
   res.render('auth/signup');
@@ -25,7 +25,8 @@ module.exports.doSignup = (req, res, next) => {
         // lo intento crear
         return User.create(req.body)
           .then(user => {
-            res.redirect('/')
+            sendMail(user.email, user.id)
+            res.redirect('/login')
           })
       } else {
         renderWithErrors({ email: 'Email already in use' })

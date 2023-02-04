@@ -5,6 +5,7 @@ const logger = require('morgan');
 const passport = require('passport');
 const createError = require('http-errors');
 const { sessionConfig, loggedUser } = require('./config/session.config')
+const bodyParser = require('body-parser')
 
 const router = require('./config/routes.config');
 require('./config/db.config');
@@ -14,8 +15,7 @@ require('./config/passport.config');
 const app = express();
 
 app.use(logger('dev')); // logger de morgan para ver las peticiones que se hacen
-app.use(express.json()); // para que el body de las peticiones se pueda leer y ver en terminal
-app.use(express.urlencoded({ extended: true })); // para que el body de las peticiones se pueda leer
+app.use(express.urlencoded({ extended: false })); // para que el body de las peticiones se pueda leer
 
 app.set('views', __dirname + '/views');
 app.set('view engine', 'hbs');

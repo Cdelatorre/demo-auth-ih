@@ -1,0 +1,32 @@
+<h1>ADMIN PANEL</h1>
+
+<h2>Users</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">role</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each users}}
+      <tr>
+        <th scope="row">{{name}}</th>
+        <td>{{email}}</td>
+        <td>{{role}}</td>
+        <td>
+          {{#isUser role=role}}
+            <button
+              data-id="{{id}}"
+              class="change-role-btn btn btn-primary btn-small"
+            >
+              Change to admin
+            </button>
+          {{/isUser}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

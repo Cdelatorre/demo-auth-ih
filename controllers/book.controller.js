@@ -6,6 +6,7 @@ module.exports.create = (req, res, next) => {
 }
 
 module.exports.doCreate = (req, res, next) => {
+  console.log(req.file)
   const renderWithErrors = errors => {
     res.render(
       'book/form',
@@ -19,7 +20,13 @@ module.exports.doCreate = (req, res, next) => {
   const newBook = {
     title: req.body.title,
     description: req.body.description,
-    user: req.currentUser.id
+    user: req.user.id
+  }
+
+  console.log(req.file)
+
+  if (req.file) {
+    newBook.image = req.file.path
   }
 
   Book.create(newBook)

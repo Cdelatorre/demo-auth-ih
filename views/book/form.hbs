@@ -1,6 +1,6 @@
 <h1>Create new book</h1>
 
-<form action="/books" method="POST">
+<form action="/books" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="title" class="form-label">Title</label>
     <input
@@ -18,5 +18,9 @@
       <p>{{errors.description}}</p>
     </div>
   </div>
+    <div class="mb-3">
+      <label for="image" class="form-label">Default file input example</label>
+      <input class="form-control" type="file" name="image" id="image">
+    </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
